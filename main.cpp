@@ -32,10 +32,22 @@ int main(int argc, char* argv[])
     food.h = 10;
 
     SDL_Rect enemy;
-    enemy.y = 370;
+    enemy.y = 330;
     enemy.w = 20;
     enemy.h = 20;
-    enemy.x = 30;
+    enemy.x = 5;
+
+    SDL_Rect enemy2;
+    enemy2.y = 130;
+    enemy2.w = 20;
+    enemy2.h = 20;
+    enemy2.x = 240;
+
+    SDL_Rect enemy3;
+    enemy3.y = 230;
+    enemy3.w = 20;
+    enemy3.h = 20;
+    enemy3.x = 380;
 
     int step = 5;
     int m = 0;
@@ -46,11 +58,11 @@ int main(int argc, char* argv[])
         SDL_Delay(10);
 
         while (SDL_PollEvent(&e) != 0){
-            if (e.type == SDL_QUIT) break;
-
+            if (e.type == SDL_QUIT) exit(0);
             if (e.type == SDL_KEYDOWN) {
                 switch (e.key.keysym.sym) {
-                    case SDLK_ESCAPE: break;
+                    case SDLK_ESCAPE:
+                        break;
                     case SDLK_LEFT: filled_rect.x = (filled_rect.x + SCREEN_WIDTH - step) % SCREEN_WIDTH;
                         break;
                     case SDLK_RIGHT: filled_rect.x = (filled_rect.x + step) % SCREEN_WIDTH;
@@ -78,7 +90,7 @@ int main(int argc, char* argv[])
             break;
         }
 
-        if(death(filled_rect,enemy)){
+        if(death(filled_rect,enemy) || death(filled_rect,enemy2) || death(filled_rect,enemy3)){
             gameOver(renderer, e,m);
             break;
         }
@@ -88,7 +100,7 @@ int main(int argc, char* argv[])
             gameOver(renderer,e,m);
             break;
         }
-        rendergame(window, renderer, filled_rect,food,enemy,e,m,current);
+        rendergame(window, renderer, filled_rect,food,enemy,enemy2,enemy3,e,m,current);
     }
 
     quitSDL(window, renderer);

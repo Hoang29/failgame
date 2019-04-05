@@ -11,7 +11,7 @@ void gameOver(SDL_Renderer* renderer,SDL_Event event,int m)
 	SDL_Color White = { 255, 255, 255 };
 	SDL_Color Black = { 0, 0, 0 };
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 180, 255, 255);
     SDL_RenderClear(renderer);
 
 	TTF_Font* font = TTF_OpenFont((char*)"lightitalic.ttf", 30);
@@ -53,9 +53,9 @@ void gameOver(SDL_Renderer* renderer,SDL_Event event,int m)
 
 	pointRect.w = 25*a;
 	pointRect.h = 40;
-	pointRect.x = 250;
 	pointRect.y = 330;
-
+    if(a == 4)pointRect.x = 250;
+    else pointRect.x = 280;
 	SDL_RenderCopy(renderer, gameoverMessage, NULL, &gameoverRect);
     SDL_RenderCopy(renderer, retryMessage, NULL, &retryRect);
     SDL_RenderCopy(renderer, pointMessage, NULL, &pointRect);
@@ -64,7 +64,7 @@ void gameOver(SDL_Renderer* renderer,SDL_Event event,int m)
 
 	while (true) {
 		SDL_RenderPresent(renderer);
-		if (SDL_PollEvent(&event)) {
+		if (SDL_PollEvent(&event) != 0) {
 			if (event.type == SDL_QUIT) {
 				exit(0);
 			}
@@ -82,7 +82,7 @@ void mybegin(SDL_Renderer* renderer,SDL_Event event)
 	SDL_Color White = { 255, 255, 255 };
 	SDL_Color Black = { 0, 0, 0 };
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 150, 250, 0, 255);
     SDL_RenderClear(renderer);
 
 	TTF_Font* font = TTF_OpenFont((char*)"lamba.ttf", 30);
@@ -91,9 +91,8 @@ void mybegin(SDL_Renderer* renderer,SDL_Event event)
 		cout << "Font loading error" << endl;
 		return;
 	}
-
 	SDL_Surface* mybegin1 = TTF_RenderText_Solid(font, "aaa", Black);
-    SDL_Surface* mybegin2 = TTF_RenderText_Solid(font, "press enter to start", Black);
+    SDL_Surface* mybegin2 = TTF_RenderText_Solid(font, "press enter to start", Red);
 	SDL_Texture* beginMessage = SDL_CreateTextureFromSurface(renderer, mybegin1);
     SDL_Texture* beginMessage2 = SDL_CreateTextureFromSurface(renderer, mybegin2);
 	SDL_Rect beginRect;
@@ -115,7 +114,7 @@ void mybegin(SDL_Renderer* renderer,SDL_Event event)
 
 	while (true) {
 		SDL_RenderPresent(renderer);
-		if (SDL_PollEvent(&event)) {
+		if (SDL_PollEvent(&event) != 0) {
 			if (event.type == SDL_QUIT) {
 				exit(0);
 			}

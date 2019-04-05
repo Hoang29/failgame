@@ -3,7 +3,7 @@
 #include "rule.h"
 #include <SDL_ttf.h>
 using namespace std;
-void rendergame(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& filled_rect1, const SDL_Rect& filled_rect2,SDL_Rect& filled_rect3,SDL_Event event, int m,int time){
+void rendergame(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& filled_rect1, const SDL_Rect& filled_rect2,SDL_Rect& filled_rect3,SDL_Rect& filled_rect4,SDL_Rect& filled_rect5,SDL_Event event, int m,int time){
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
     SDL_RenderClear(renderer);
 
@@ -58,18 +58,36 @@ void rendergame(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& fill
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(renderer,& bill);
 
-    /*SDL_Rect enemy;
-    enemy.y = 370;
-    enemy.w = 20;
-    enemy.h = 20;
-    enemy.x = 30;*/
-    if(((time/1000)/10)%2== 0){
-        filled_rect3.x = 30 + ((time/1000)%10)*10 ;
-    } else {
-        filled_rect3.x = 110 - ((time/1000)%10)*10;
+    if(((time/100)/17)%4== 0){
+        filled_rect3.y = 330 - ((time/100)%17)*10 ;
+        filled_rect4.y = 135 - ((time/100)%17)*6;
+
     }
+    else if(((time/100)/17)%4== 1){
+        filled_rect3.x = 5 + ((time/100)%17)*10 ;
+        filled_rect4.x = 240 - ((time/100)%17)*8 ;
+
+    }
+    else if(((time/100)/17)%4== 2){
+        filled_rect3.x = 165 -((time/100)%17)*10 ;
+        filled_rect4.x = 115 +((time/100)%17)*8 ;
+
+    }
+    else if(((time/100)/17)%4== 3){
+        filled_rect3.y = 170 + ((time/100)%17)*10;
+        filled_rect4.y = 45 + ((time/100)%17)*6;
+
+    }
+
+
     SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
     SDL_RenderFillRect(renderer,& filled_rect3);
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderFillRect(renderer,& filled_rect4);
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderFillRect(renderer,& filled_rect5);
 
     SDL_SetRenderDrawColor(renderer, 220, 0, 0, 255);
     SDL_SetRenderDrawColor(renderer, 220, 0, 0, 255);
@@ -142,6 +160,18 @@ void rendergame(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& fill
         a = 5;
 	}
 
+    if(((time/180)/17)%4== 0){
+        filled_rect5.y = 230 + ((time/180)%17)*9;
+    }
+    else if(((time/180)/17)%4== 1){
+        filled_rect5.x = 380 - ((time/180)%17)*9 ;
+    }
+    else if(((time/180)/17)%4== 2){
+        filled_rect5.x = 235 +((time/180)%17)*9 ;
+    }
+    else if(((time/180)/17)%4== 3){
+        filled_rect5.y = 370 - ((time/180)%17)*9;
+    }
 
 	SDL_Rect scoreRect;
 	scoreRect.w = 15*a;
@@ -159,9 +189,9 @@ void rendergame(SDL_Window* window, SDL_Renderer* renderer, const SDL_Rect& fill
     int second = aa - (minute*60);
     SDL_Surface* Mytime;
     if(second >= 10){
-    Mytime = TTF_RenderText_Solid(font, ( to_string(minute) +":"+ to_string(second)).c_str(), Black);
+        Mytime = TTF_RenderText_Solid(font, ( to_string(minute) +":"+ to_string(second)).c_str(), Black);
     } else {
-    Mytime = TTF_RenderText_Solid(font, ( to_string(minute) +":0"+ to_string(second)).c_str(), Black);
+        Mytime = TTF_RenderText_Solid(font, ( to_string(minute) +":0"+ to_string(second)).c_str(), Black);
     }
     SDL_Texture* timeMessage = SDL_CreateTextureFromSurface(renderer, Mytime);
 	SDL_Rect timeRect;
