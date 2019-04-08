@@ -14,7 +14,7 @@ void gameOver(SDL_Renderer* renderer,SDL_Event event,int m)
     SDL_SetRenderDrawColor(renderer, 0, 180, 255, 255);
     SDL_RenderClear(renderer);
 
-	TTF_Font* font = TTF_OpenFont((char*)"lightitalic.ttf", 30);
+	TTF_Font* font = TTF_OpenFont((char*)"lamba.ttf", 30);
 	if (font == NULL) {
 
 		cout << "Font loading error" << endl;
@@ -91,14 +91,14 @@ void mybegin(SDL_Renderer* renderer,SDL_Event event)
 		cout << "Font loading error" << endl;
 		return;
 	}
-	SDL_Surface* mybegin1 = TTF_RenderText_Solid(font, "aaa", Black);
+	SDL_Surface* mybegin1 = TTF_RenderText_Solid(font, "aaaaa aaaaaa aaaa aaa", Black);
     SDL_Surface* mybegin2 = TTF_RenderText_Solid(font, "press enter to start", Red);
 	SDL_Texture* beginMessage = SDL_CreateTextureFromSurface(renderer, mybegin1);
     SDL_Texture* beginMessage2 = SDL_CreateTextureFromSurface(renderer, mybegin2);
 	SDL_Rect beginRect;
-	beginRect.w = 200;
+	beginRect.w = 420;
 	beginRect.h = 100;
-	beginRect.x = 200;
+	beginRect.x = 90;
 	beginRect.y = 100;
 
 	SDL_Rect beginRect2;
@@ -111,6 +111,31 @@ void mybegin(SDL_Renderer* renderer,SDL_Event event)
 	SDL_RenderCopy(renderer, beginMessage2, NULL, &beginRect2);
 	TTF_CloseFont(font);
 
+    SDL_Rect vien1;
+    vien1.x = 0;
+    vien1.y = 0;
+    vien1.w = 600;
+    vien1.h = 18;
+    SDL_Rect vien2;
+    vien2.x = 0;
+    vien2.y = 0;
+    vien2.w = 18;
+    vien2.h = 600;
+    SDL_Rect vien3;
+    vien3.x = 0;
+    vien3.y = 582;
+    vien3.w = 600;
+    vien3.h = 18;
+    SDL_Rect vien4;
+    vien4.x = 582;
+    vien4.y = 0;
+    vien4.w = 18;
+    vien4.h = 600;
+    SDL_SetRenderDrawColor(renderer,250,150,0,255);
+    SDL_RenderFillRect(renderer,& vien1);
+    SDL_RenderFillRect(renderer,& vien2);
+    SDL_RenderFillRect(renderer,& vien3);
+    SDL_RenderFillRect(renderer,& vien4);
 
 	while (true) {
 		SDL_RenderPresent(renderer);
