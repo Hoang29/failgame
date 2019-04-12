@@ -8,8 +8,7 @@ using namespace std;
 void gameOver(SDL_Renderer* renderer,SDL_Event event,int m)
 {
     SDL_Color Red = { 255, 0, 0 };
-	SDL_Color White = { 255, 255, 255 };
-	SDL_Color Black = { 0, 0, 0 };
+    SDL_Color Black = { 0, 0, 0 };
 
     SDL_SetRenderDrawColor(renderer, 0, 180, 255, 255);
     SDL_RenderClear(renderer);

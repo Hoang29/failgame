@@ -26,8 +26,10 @@ int main(int argc, char* argv[])
     filled_rect.h = 20;
 
     SDL_Rect food;
-    food.x = 80;
-    food.y = 90;
+    //food.x = 80;
+    //food.y = 90;
+    food.x = rand() % 390 + 0;
+    food.y = rand() % 390 + 0;
     food.w = 10;
     food.h = 10;
 
@@ -77,8 +79,10 @@ int main(int argc, char* argv[])
 
             }
             if(eat(filled_rect.x, filled_rect.y, food.x, food.y)){
-                   food.x = rand() % (400 - food.x) + 40;
-                   food.y = rand() % (400 - food.y) + 40 ;
+                   //food.x = rand() % (400 - food.x) + 40;
+                   //food.y = rand() % (400 - food.y) + 40 ;
+                   food.x = rand() % 390 + 0;
+                   food.y = rand() % 390 + 0;
                     m++;
             }
 

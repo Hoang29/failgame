@@ -3,8 +3,7 @@
 #include <SDL.h>
 
 #include <SDL_ttf.h>
-//*****************************************************
-// Các hàm chung về khởi tạo và huỷ SDL
+
 using namespace std;
 void logSDLError(std::ostream& os,
                  const std::string &msg, bool fatal)
